@@ -1,0 +1,9 @@
+{
+    "inputs": ["a", "b", "c"],
+    "outputs": ["p0", "p1"],
+    "assumptions": [],
+    "guarantees": [
+        "G (p0 <-> !p1)",
+        "(G F (a | b) & G F (b | c)) <-> G F p0"
+    ]
+}

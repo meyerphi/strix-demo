@@ -1,0 +1,9 @@
+{
+    "inputs": ["req", "go"],
+    "outputs": ["grant", "ack"],
+    "assumptions": [
+    ],
+    "guarantees": [
+        "!(G (req -> F ack) & G (go -> F grant))"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "inputs": ["request_0", "request_1", "request_2", "request_3"],
+    "outputs": ["grant"],
+    "assumptions": [],
+    "guarantees": [
+        "(G F request_0 & G F request_1 & G F request_2 & G F request_3) <-> G F grant"
+    ]
+}

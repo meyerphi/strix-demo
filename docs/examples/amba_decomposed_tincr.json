@@ -1,0 +1,16 @@
+{
+    "inputs": ["busreq", "decide", "locked", "hready", "incr"],
+    "outputs": ["ready1"],
+    "assumptions": [
+        "!decide",
+        "G F hready",
+        "G F !busreq",
+        "G (!ready1 -> X !decide)"
+    ],
+    "guarantees": [
+        "G (decide -> X X (((incr & locked) -> (!ready1 W (hready & !busreq))) & (!(incr & locked) -> ready1)))",
+        "G ((ready1 & X !decide) -> X ready1)",
+        "G ((ready1 & X decide) -> X (!ready1 & X !ready1))",
+        "ready1"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "inputs": ["r0", "r1"],
+    "outputs": ["g0", "g1"],
+    "assumptions": [
+    ],
+    "guarantees": [
+        "G F r0 -> G F g0",
+        "G F r1 -> G F g1",
+        "G !(g0 & g1)"
+    ]
+}

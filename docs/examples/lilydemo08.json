@@ -1,0 +1,10 @@
+{
+    "inputs": ["req"],
+    "outputs": ["grant"],
+    "assumptions": [
+        "G F req"
+    ],
+    "guarantees": [
+        "G F grant"
+    ]
+}

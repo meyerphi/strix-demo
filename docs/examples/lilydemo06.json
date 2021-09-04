@@ -1,0 +1,12 @@
+{
+    "inputs": ["req", "cancel", "go"],
+    "outputs": ["grant"],
+    "assumptions": [
+        "G (cancel -> X (go | X (go | X go)))"
+    ],
+    "guarantees": [
+        "G (req -> X (grant | cancel | X (grant | cancel | X (grant | cancel))))",
+        "G (grant -> X !grant)",
+        "G (cancel -> X (!grant U go))"
+    ]
+}

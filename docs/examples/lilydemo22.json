@@ -1,0 +1,18 @@
+{
+    "inputs": ["godown", "goup", "ws"],
+    "outputs": ["ss"],
+    "assumptions": [
+        "!godown",
+        "!goup",
+        "!ws",
+        "G !(godown & goup)",
+        "G F !ws",
+        "G ((!ws & ss) -> X !ws)",
+        "G (ws -> X (!ws | X (!ws | X (!ws | X !ws))))"
+    ],
+    "guarantees": [
+        "G !(ws & X ss)",
+        "G (goup -> F !ss)",
+        "G (godown -> F ss)"
+    ]
+}

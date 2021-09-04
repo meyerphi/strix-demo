@@ -1,0 +1,10 @@
+{
+    "inputs": ["req", "cancel"],
+    "outputs": ["grant", "ack"],
+    "assumptions": [
+        "(G F req) | (F cancel)"
+    ],
+    "guarantees": [
+        "(G F grant) | (G ack)"
+    ]
+}

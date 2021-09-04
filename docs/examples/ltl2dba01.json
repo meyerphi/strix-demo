@@ -1,0 +1,8 @@
+{
+    "inputs": ["p", "q", "r"],
+    "outputs": ["acc"],
+    "assumptions": [],
+    "guarantees": [
+        "F (q & X (p U r)) <-> G F acc"
+    ]
+}

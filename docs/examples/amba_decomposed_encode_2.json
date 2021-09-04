@@ -1,0 +1,13 @@
+{
+    "inputs": ["hready", "hgrant_0", "hgrant_1"],
+    "outputs": ["hmaster_0"],
+    "assumptions": [
+        "G (!hgrant_0 | ! hgrant_1)",
+        "G (hgrant_0 | hgrant_1)"
+    ],
+    "guarantees": [
+        "G (hready -> (X !hmaster_0 <-> hgrant_0))",
+        "G (hready -> (X hmaster_0 <-> hgrant_1))",
+        "G (!hready -> (X hmaster_0 <-> hmaster_0))"
+    ]
+}

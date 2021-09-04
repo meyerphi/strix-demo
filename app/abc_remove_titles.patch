@@ -1,0 +1,160 @@
+diff --git a/src/base/io/ioWriteDot.c b/src/base/io/ioWriteDot.c
+index 0ab3c4d2..6e93592f 100644
+--- a/src/base/io/ioWriteDot.c
++++ b/src/base/io/ioWriteDot.c
+@@ -174,8 +174,6 @@ void Io_WriteDotNtk( Abc_Ntk_t * pNtk, Vec_Ptr_t * vNodes, Vec_Ptr_t * vNodesSho
+     fprintf( pFile, "{\n" );
+     fprintf( pFile, "  node [shape = plaintext];\n" );
+     fprintf( pFile, "  edge [style = invis];\n" );
+-    fprintf( pFile, "  LevelTitle1 [label=\"\"];\n" );
+-    fprintf( pFile, "  LevelTitle2 [label=\"\"];\n" );
+     // generate node names with labels
+     for ( Level = LevelMax; Level >= LevelMin; Level-- )
+     {
+@@ -189,7 +187,6 @@ void Io_WriteDotNtk( Abc_Ntk_t * pNtk, Vec_Ptr_t * vNodes, Vec_Ptr_t * vNodesSho
+     }
+ 
+     // genetate the sequence of visible/invisible nodes to mark levels
+-    fprintf( pFile, "  LevelTitle1 ->  LevelTitle2 ->" );
+     for ( Level = LevelMax; Level >= LevelMin; Level-- )
+     {
+         // the visible node name
+@@ -205,43 +202,6 @@ void Io_WriteDotNtk( Abc_Ntk_t * pNtk, Vec_Ptr_t * vNodes, Vec_Ptr_t * vNodesSho
+     fprintf( pFile, "\n" );
+     fprintf( pFile, "\n" );
+ 
+-    // generate title box on top
+-    fprintf( pFile, "{\n" );
+-    fprintf( pFile, "  rank = same;\n" );
+-    fprintf( pFile, "  LevelTitle1;\n" );
+-    fprintf( pFile, "  title1 [shape=plaintext,\n" );
+-    fprintf( pFile, "          fontsize=20,\n" );
+-    fprintf( pFile, "          fontname = \"Times-Roman\",\n" );
+-    fprintf( pFile, "          label=\"" );
+-    fprintf( pFile, "%s", "Network structure visualized by ABC" );
+-    fprintf( pFile, "\\n" );
+-    fprintf( pFile, "Benchmark \\\"%s\\\". ", pNtk->pName );
+-    fprintf( pFile, "Time was %s. ",  Extra_TimeStamp() );
+-    fprintf( pFile, "\"\n" );
+-    fprintf( pFile, "         ];\n" );
+-    fprintf( pFile, "}" );
+-    fprintf( pFile, "\n" );
+-    fprintf( pFile, "\n" );
+-
+-    // generate statistics box
+-    fprintf( pFile, "{\n" );
+-    fprintf( pFile, "  rank = same;\n" );
+-    fprintf( pFile, "  LevelTitle2;\n" );
+-    fprintf( pFile, "  title2 [shape=plaintext,\n" );
+-    fprintf( pFile, "          fontsize=18,\n" );
+-    fprintf( pFile, "          fontname = \"Times-Roman\",\n" );
+-    fprintf( pFile, "          label=\"" );
+-    if ( Abc_NtkObjNum(pNtk) == Vec_PtrSize(vNodes) )
+-        fprintf( pFile, "The network contains %d logic nodes and %d latches.", Abc_NtkNodeNum(pNtk), Abc_NtkLatchNum(pNtk) );
+-    else
+-        fprintf( pFile, "The set contains %d logic nodes and spans %d levels.", Abc_NtkCountLogicNodes(vNodes), LevelMax - LevelMin + 1 );
+-    fprintf( pFile, "\\n" );
+-    fprintf( pFile, "\"\n" );
+-    fprintf( pFile, "         ];\n" );
+-    fprintf( pFile, "}" );
+-    fprintf( pFile, "\n" );
+-    fprintf( pFile, "\n" );
+-
+     // generate the POs
+     if ( fHasCos )
+     {
+@@ -357,14 +317,6 @@ void Io_WriteDotNtk( Abc_Ntk_t * pNtk, Vec_Ptr_t * vNodes, Vec_Ptr_t * vNodesSho
+         fprintf( pFile, "\n" );
+     }
+ 
+-    // generate invisible edges from the square down
+-    fprintf( pFile, "title1 -> title2 [style = invis];\n" );
+-    Vec_PtrForEachEntry( Abc_Obj_t *, vNodes, pNode, i )
+-    {
+-        if ( (int)pNode->Level != LevelMax )
+-            continue;
+-        fprintf( pFile, "title2 -> Node%d [style = invis];\n", pNode->Id );
+-    }
+     // generate invisible edges among the COs
+     Prev = -1;
+     Vec_PtrForEachEntry( Abc_Obj_t *, vNodes, pNode, i )
+@@ -537,8 +489,6 @@ void Io_WriteDotSeq( Abc_Ntk_t * pNtk, Vec_Ptr_t * vNodes, Vec_Ptr_t * vNodesSho
+     fprintf( pFile, "{\n" );
+     fprintf( pFile, "  node [shape = plaintext];\n" );
+     fprintf( pFile, "  edge [style = invis];\n" );
+-    fprintf( pFile, "  LevelTitle1 [label=\"\"];\n" );
+-    fprintf( pFile, "  LevelTitle2 [label=\"\"];\n" );
+     // generate node names with labels
+     for ( Level = LevelMax; Level >= LevelMin; Level-- )
+     {
+@@ -552,7 +502,6 @@ void Io_WriteDotSeq( Abc_Ntk_t * pNtk, Vec_Ptr_t * vNodes, Vec_Ptr_t * vNodesSho
+     }
+ 
+     // genetate the sequence of visible/invisible nodes to mark levels
+-    fprintf( pFile, "  LevelTitle1 ->  LevelTitle2 ->" );
+     for ( Level = LevelMax; Level >= LevelMin; Level-- )
+     {
+         // the visible node name
+@@ -568,43 +517,6 @@ void Io_WriteDotSeq( Abc_Ntk_t * pNtk, Vec_Ptr_t * vNodes, Vec_Ptr_t * vNodesSho
+     fprintf( pFile, "\n" );
+     fprintf( pFile, "\n" );
+ 
+-    // generate title box on top
+-    fprintf( pFile, "{\n" );
+-    fprintf( pFile, "  rank = same;\n" );
+-    fprintf( pFile, "  LevelTitle1;\n" );
+-    fprintf( pFile, "  title1 [shape=plaintext,\n" );
+-    fprintf( pFile, "          fontsize=20,\n" );
+-    fprintf( pFile, "          fontname = \"Times-Roman\",\n" );
+-    fprintf( pFile, "          label=\"" );
+-    fprintf( pFile, "%s", "Network structure visualized by ABC" );
+-    fprintf( pFile, "\\n" );
+-    fprintf( pFile, "Benchmark \\\"%s\\\". ", pNtk->pName );
+-    fprintf( pFile, "Time was %s. ",  Extra_TimeStamp() );
+-    fprintf( pFile, "\"\n" );
+-    fprintf( pFile, "         ];\n" );
+-    fprintf( pFile, "}" );
+-    fprintf( pFile, "\n" );
+-    fprintf( pFile, "\n" );
+-
+-    // generate statistics box
+-    fprintf( pFile, "{\n" );
+-    fprintf( pFile, "  rank = same;\n" );
+-    fprintf( pFile, "  LevelTitle2;\n" );
+-    fprintf( pFile, "  title2 [shape=plaintext,\n" );
+-    fprintf( pFile, "          fontsize=18,\n" );
+-    fprintf( pFile, "          fontname = \"Times-Roman\",\n" );
+-    fprintf( pFile, "          label=\"" );
+-    if ( Abc_NtkObjNum(pNtk) == Vec_PtrSize(vNodes) )
+-        fprintf( pFile, "The network contains %d logic nodes and %d latches.", Abc_NtkNodeNum(pNtk), Abc_NtkLatchNum(pNtk) );
+-    else
+-        fprintf( pFile, "The set contains %d logic nodes and spans %d levels.", Abc_NtkCountLogicNodes(vNodes), LevelMax - LevelMin + 1 );
+-    fprintf( pFile, "\\n" );
+-    fprintf( pFile, "\"\n" );
+-    fprintf( pFile, "         ];\n" );
+-    fprintf( pFile, "}" );
+-    fprintf( pFile, "\n" );
+-    fprintf( pFile, "\n" );
+-
+     // generate the POs
+     if ( fHasCos )
+     {
+@@ -715,16 +627,6 @@ void Io_WriteDotSeq( Abc_Ntk_t * pNtk, Vec_Ptr_t * vNodes, Vec_Ptr_t * vNodesSho
+ //    fprintf( pFile, "\n" );
+     fprintf( pFile, "\n" );
+ 
+-    // generate invisible edges from the square down
+-    fprintf( pFile, "title1 -> title2 [style = invis];\n" );
+-    Vec_PtrForEachEntry( Abc_Obj_t *, vNodes, pNode, i )
+-    {
+-        if ( (int)pNode->Level != LevelMax )
+-            continue;
+-        if ( !Abc_ObjIsPo(pNode) )
+-            continue;
+-        fprintf( pFile, "title2 -> Node%d [style = invis];\n", pNode->Id );
+-    }
+     // generate invisible edges among the COs
+     Prev = -1;
+     Vec_PtrForEachEntry( Abc_Obj_t *, vNodes, pNode, i )
+-- 
+2.32.0

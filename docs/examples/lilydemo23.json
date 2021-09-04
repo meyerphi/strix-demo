@@ -1,0 +1,11 @@
+{
+    "inputs": ["e"],
+    "outputs": ["s"],
+    "assumptions": [
+        "G ((e & X s) -> X e)",
+        "G F !e"
+    ],
+    "guarantees": [
+        "G X (!e & X !s)"
+    ]
+}

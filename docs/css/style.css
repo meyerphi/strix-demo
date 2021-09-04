@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url(roboto.ttf) format('truetype');
+}
+
+body {
+  font-family: 'Roboto', serif;
+  font-size: 16px;
+}
+
+.CodeMirror { height: auto; border: 1px solid #ddd; }
+.CodeMirror-scroll { max-height: 200px; }
+.CodeMirror pre { padding-left: 7px; line-height: 1.25; }

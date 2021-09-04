@@ -1,0 +1,12 @@
+{
+    "inputs": ["hburst_0", "hburst_1"],
+    "outputs": ["incr", "burst4", "single"],
+    "assumptions": [],
+    "guarantees": [
+        "G ((!hburst_0 & !hburst_1) -> single)",
+        "G ((hburst_0 & !hburst_1) -> burst4)",
+        "G ((!hburst_0 & hburst_1) -> incr)",
+        "G !(single & (burst4 | incr))",
+        "G !(burst4 & incr)"
+    ]
+}
