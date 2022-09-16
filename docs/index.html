@@ -10,80 +10,23 @@
   <title>
     Strix Online Demo
   </title>
-
-  <!-- Scripts -->
-  <script src="js/jquery.min.js" type="text/javascript"></script>
-  <script src="js/jstree.min.js" type="text/javascript"></script>
-  <script src="js/codemirror/codemirror.min.js" type="text/javascript"></script>
-  <script src="js/codemirror/addon/simple.js" type="text/javascript"></script>
-  <script src="js/codemirror/addon/matchbrackets.js" type="text/javascript"></script>
-  <script src="js/codemirror/addon/closebrackets.js" type="text/javascript"></script>
-  <script src="js/codemirror/addon/placeholder.js" type="text/javascript"></script>
-  <script src="js/codemirror/mode/ltl.js" type="text/javascript"></script>
-  <script src="js/api.js" type="text/javascript"></script>
-
-  <!-- Style -->
-  <link rel="stylesheet" href="css/codemirror/codemirror.min.css">
-  <link rel="stylesheet" href="css/codemirror/theme/3024-day.css">
-  <link rel="stylesheet" href="css/jstree/style.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onload="init()">
+<body>
   <div style="max-width: 960px; margin: auto">
     <div style="text-align: center; padding-bottom: 20px">
       <h1>Strix Online Demo</h1>
-      <h4>Strix version: 21.0.0</h4>
     </div>
-
-    <form id="input" onsubmit="create(); return false;">
-      <div style="font-size: 1.2em; display: block; width: 100%; padding: 0 0 5px 0" class="code-textarea">
-        <label for="assumptions">Assumptions:</label>
-        <textarea style="width:100%" name="assumptions" id="assumptions_textarea" placeholder="true"></textarea>
-      </div>
-
-      <div style="font-size: 1.2em; display: block; width: 100%; padding: 0 0 5px 0" class="code-textarea">
-        <label for="guarantees">Guarantees:</label>
-        <textarea style="width:100%" name="guarantees" id="guarantees_textarea" placeholder="G (request_0 -> F grant_0) & G (request_1 -> F grant_1)"></textarea>
-      </div>
-
-      <div style="font-size: 1.2em; display: block; width: 100%; padding: 0 0 5px 0">
-        <label for="inputs">Input propositions:</label>
-        <textarea style="width:100%" name="inputs" id="inputs_textarea" placeholder="request_0, request_1"/></textarea>
-      </div>
-
-      <div style="font-size: 1.2em; display: block; width: 100%; padding: 0 0 5px 0">
-        <label for="outputs">Output propositions:</label>
-        <textarea style="width:100%" name="outputs" id="outputs_textarea" placeholder="grant_0, grant_1"/></textarea>
-      </div>
-
-      <div style="font-size: 1em; display: block; width: 100%; padding: 10px 0 5px 0">
-        <div id="exampleContainer"></div>
-      </div>
-
-      <h4 style="margin-bottom: 5px">Format:</h4>
-      <input type="radio" name="format" value="mealy" checked="checked">Mealy/Moore machine<br>
-      <input type="radio" name="format" value="aiger">AIGER circuit<br>
-      <input type="radio" name="format" value="bdd">BDD<br>
-
-      <h4 style="margin-bottom: 5px">Options:</h4>
-      <input type="checkbox" name="minimize" checked="checked">Minimize controller<br>
-      <input type="checkbox" name="labels">Structured labels<br>
-    </form>
-    <p style="text-align: center">
-      <button style="height: 40px; min-width: 280px" onclick="create(); return false;">
-        Synthesize! (Timelimit: 20 sec)
-      </button>
-    </p>
-  </div>
-
-  <div id="svg-container" style="text-align: center; overflow-x: auto; overflow-y: hidden"></div>
-
-  <div style="max-width: 960px; margin: auto">
-    <hr>
-    <p>
-    We use <a href="https://spot.lrde.epita.fr/">Spot</a>'s autfilt and <a href="https://github.com/berkeley-abc/abc">abc</a> to convert the controller into the <a href="http://www.graphviz.org/doc/info/lang.html">dot</a> format and render it to SVG using the equally named tool.
-    </p>
-  </div>
+    <div style="font-size: 1em; font-weight: bold; padding: 10px 0">
+      The Strix Online Demo has been deactivated for the time being, due to insufficient resources (time and money) for maintenance.
+    </div>
+    <div style="font-size: 1em; padding: 10px 0">
+      You can try running Strix locally, by visting the <a href="https://github.com/meyerphi/strix">Strix repository</a> to download a precompiled version or compiling it yourself.
+    </div>
+    <div style="font-size: 1em; padding: 10px 0">
+      You could also try hosting <a href="https://github.com/meyerphi/strix-demo">the demo from its source code</a> yourself.
+      For reference, the frontend is <a href="demo.html">still available on this site</a>, but has no functioning backend.
+    </div>
 </body>
 </html>
